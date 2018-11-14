@@ -16,7 +16,7 @@
     
     TestForJSON_Serializer *jszer = [[TestForJSON_Serializer alloc] init];
     //DO serialize
-    NSString *jsonStr = [jszer jsonify];
+    [jszer jsonify];
     
     //Do deserialize
     [jszer deserialize];

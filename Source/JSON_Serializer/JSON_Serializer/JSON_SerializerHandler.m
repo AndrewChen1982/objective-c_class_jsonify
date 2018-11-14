@@ -11,7 +11,7 @@
 #import "JSON_Serializer.h"
 #import "JSON_SerializerUtility.h"
 
-@implementation JSON_DataBlock
+@implementation JSON_SerializerHandler
 const static NSDictionary *InternalIgnoreTab;
 
 - (instancetype)init {
@@ -26,17 +26,18 @@ const static NSDictionary *InternalIgnoreTab;
     return self;
 }
 
-- (JSON_DataBlock *)addIgnoreSerializeVar:(NSString *)iVarName {
+- (JSON_SerializerHandler *)addIgnoreSerializeVar:(NSString *)iVarName {
     [self->ignoreSerializeTab setObject:@(true) forKey:iVarName];
     return self;
 }
 
-- (JSON_DataBlock *)addIgnoreDeserializeVar:(NSString *)iVarName {
+- (JSON_SerializerHandler *)addIgnoreDeserializeVar:(NSString *)iVarName {
     [self->ignoreDeserializeTab setObject:@(true) forKey:iVarName];
     return self;
 }
 
-- (NSString *const)serialize:(Class)metaClass {
+- (NSString *const)serialize:(id<JSON_DataBlockProtocol>)datablock
+                   metaClass:(Class<JSON_DataBlockProtocol>)metaClass {
     static unsigned int count;
     Ivar* ivars = class_copyIvarList(metaClass, &count);
     for(unsigned int i = 0; i < count; ++i)
@@ -54,12 +55,12 @@ const static NSDictionary *InternalIgnoreTab;
         }
         
         if(strcmp(ivarType, "i") == 0) {
-            int varVal = ((int (*)(id, Ivar))object_getIvar)(self, ivar);
+            int varVal = ((int (*)(id, Ivar))object_getIvar)(datablock, ivar);
             [self->iVarCollection setObject:@(varVal) forKey:@(varName)];
             continue;
         }
         
-        NSString *varVal = object_getIvar(self, ivar);
+        NSString *varVal = object_getIvar(datablock, ivar);
         
         [self->iVarCollection setObject:varVal forKey:@(varName)];
     }
@@ -75,7 +76,10 @@ const static NSDictionary *InternalIgnoreTab;
     return [self->iVarCollection toJSONString:0];
 }
 
-- (void)assignData:(id)currentObj itemOfJson:(id)item forKey:(NSString *)key {
+- (void)assignData:(id<JSON_DataBlockProtocol>)currentObj
+         metaClass:(Class<JSON_DataBlockProtocol>)metaClass
+        itemOfJson:(id)item
+            forKey:(NSString *)key {
     
     static char const Iter = -1;
     static char const Skip = 0;
@@ -85,7 +89,7 @@ const static NSDictionary *InternalIgnoreTab;
     static char (^isValidType)(__weak id, NSString *, __weak id, Ivar);
     
     if(!isValidType) {
-        isValidType = ^char(__weak JSON_DataBlock *tarObj, __weak NSString *tarKey, __weak id elementOfJson, __weak Ivar tarIvar) {
+        isValidType = ^char(JSON_SerializerHandler *tarObj, NSString *tarKey, __weak id elementOfJson, Ivar tarIvar) {
             if(!elementOfJson) {
                 return Skip;
             }
@@ -162,7 +166,7 @@ const static NSDictionary *InternalIgnoreTab;
         };
     }
     
-    Ivar tarIvar = class_getInstanceVariable([currentObj class], [key UTF8String]);
+    Ivar tarIvar = class_getInstanceVariable(metaClass, [key UTF8String]);
     if(!tarIvar) {
         return;
     }
@@ -185,7 +189,7 @@ const static NSDictionary *InternalIgnoreTab;
             }
             
             id nextItem = [item objectForKey:nextKey];
-            [self assignData:fetchedObj itemOfJson:nextItem forKey:nextKey];
+            [self assignData:fetchedObj metaClass:metaClass itemOfJson:nextItem forKey:nextKey];
         }
         return;
     }
@@ -197,7 +201,9 @@ const static NSDictionary *InternalIgnoreTab;
     onSetValue();
 }
 
-- (id<JSON_DataBlockProtocol>)deserialize:(NSString *)jsonStr {
+- (id<JSON_DataBlockProtocol>)deserialize:(id<JSON_DataBlockProtocol>)datablock
+                                metaClass:(Class<JSON_DataBlockProtocol>)metaClass
+                                  jsonStr:(NSString *)jsonStr {
     NSDictionary *jsonObj = [jsonStr toJsonObject];
     
     if (!jsonObj) {
@@ -216,7 +222,7 @@ const static NSDictionary *InternalIgnoreTab;
         
         id item = [jsonObj objectForKey:key];
         
-        [self assignData:self itemOfJson:item forKey:key];
+        [self assignData:datablock metaClass:metaClass itemOfJson:item forKey:key];
     }
     
     return self;

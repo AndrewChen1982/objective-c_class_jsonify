@@ -48,17 +48,18 @@ static NSString *_phoneNumber;
     db->phoneNumber = @"0987654321";
     
     NSString *jsonStr =[package toJsonString];
-    NSLog(@"Serialize:\n\tDatablock Jsonify: %@\n\n%@", jsonStr, @"_");
+    NSLog(@"Jsonify:\nDatablock Jsonify: %@\n\n%@", jsonStr, @"_");
     
     return jsonStr;
 }
 
 - (void)deserialize {
     JSON_Serializer<UserDataBlock *> *package = [[JSON_Serializer alloc] initWithDataBlock:[UserDataBlock class]];
-    [package deserialize:@"{\"userID\":\"5551236\",\"phoneNumber\":\"02222667222\"}"];
+    NSString *jsonStr = @"{\"userID\":\"5551236\",\"phoneNumber\":\"02222667222\",\"birthday\":\"2018.01.01\"}";
+    [package toClassObject:jsonStr];
     
-    NSLog(@"Deserialize:\n\tUserDataBlock.UserID: %@, UserDataBlock.PhoneNumber: %@",
-          [UserDataBlock userID], [UserDataBlock phoneNumber]);
+    NSLog(@"Deserialize:\n%@ to class UserDataBlock → \nUserDataBlock.UserID: %@, UserDataBlock.PhoneNumber: %@",
+          jsonStr, [UserDataBlock userID], [UserDataBlock phoneNumber]);
 }
 
 @end

@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76B9F868219A828200CF5709 /* JSON_SerializerDataBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B9F867219A828200CF5709 /* JSON_SerializerDataBlock.m */; };
+		76B9F868219A828200CF5709 /* JSON_SerializerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B9F867219A828200CF5709 /* JSON_SerializerHandler.m */; };
 		76B9F8C4219AAE5600CF5709 /* JSON_Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B9F8C3219AAE5600CF5709 /* JSON_Serializer.m */; };
 		76B9F8C7219AB92A00CF5709 /* JSON_Serializer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76B9F8C2219AAE5600CF5709 /* JSON_Serializer.h */; };
-		76B9F8C8219AB97900CF5709 /* JSON_SerializerDataBlock.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76B9F866219A828200CF5709 /* JSON_SerializerDataBlock.h */; };
 		76B9F8D1219AD2C100CF5709 /* JSON_SerializerCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B9F8D0219AD2C100CF5709 /* JSON_SerializerCategories.m */; };
 /* End PBXBuildFile section */
 
@@ -21,7 +20,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				76B9F8C8219AB97900CF5709 /* JSON_SerializerDataBlock.h in CopyFiles */,
 				76B9F8C7219AB92A00CF5709 /* JSON_Serializer.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -30,8 +28,7 @@
 
 /* Begin PBXFileReference section */
 		76B9F863219A828200CF5709 /* libJSON_Serializer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSON_Serializer.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		76B9F866219A828200CF5709 /* JSON_SerializerDataBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSON_SerializerDataBlock.h; sourceTree = "<group>"; };
-		76B9F867219A828200CF5709 /* JSON_SerializerDataBlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSON_SerializerDataBlock.m; sourceTree = "<group>"; };
+		76B9F867219A828200CF5709 /* JSON_SerializerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSON_SerializerHandler.m; sourceTree = "<group>"; };
 		76B9F891219AA21900CF5709 /* JSON_SerializerUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSON_SerializerUtility.h; sourceTree = "<group>"; };
 		76B9F8C2219AAE5600CF5709 /* JSON_Serializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON_Serializer.h; sourceTree = "<group>"; };
 		76B9F8C3219AAE5600CF5709 /* JSON_Serializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON_Serializer.m; sourceTree = "<group>"; };
@@ -73,8 +70,7 @@
 				76B9F8D0219AD2C100CF5709 /* JSON_SerializerCategories.m */,
 				76B9F8C2219AAE5600CF5709 /* JSON_Serializer.h */,
 				76B9F8C3219AAE5600CF5709 /* JSON_Serializer.m */,
-				76B9F866219A828200CF5709 /* JSON_SerializerDataBlock.h */,
-				76B9F867219A828200CF5709 /* JSON_SerializerDataBlock.m */,
+				76B9F867219A828200CF5709 /* JSON_SerializerHandler.m */,
 				76B9F891219AA21900CF5709 /* JSON_SerializerUtility.h */,
 			);
 			path = JSON_Serializer;
@@ -136,7 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B9F868219A828200CF5709 /* JSON_SerializerDataBlock.m in Sources */,
+				76B9F868219A828200CF5709 /* JSON_SerializerHandler.m in Sources */,
 				76B9F8C4219AAE5600CF5709 /* JSON_Serializer.m in Sources */,
 				76B9F8D1219AD2C100CF5709 /* JSON_SerializerCategories.m in Sources */,
 			);

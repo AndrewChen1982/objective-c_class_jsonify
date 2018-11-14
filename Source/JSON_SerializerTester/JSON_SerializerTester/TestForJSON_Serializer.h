@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSON_Serializer/JSON_Serializer.h"
 
-@interface UserDataBlock : JSON_DataBlock
+@interface UserDataBlock : NSObject<JSON_DataBlockProtocol>
 {
 @public
     NSString *userID;

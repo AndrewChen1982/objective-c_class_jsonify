@@ -39,43 +39,27 @@
     [self addIgnoreDeserializeVar:GetiVarName(self->request)];
 }
 
-- (JSON_DataBlock *)getDataBlock {
+- (id<JSON_DataBlockProtocol>)getDataBlock {
     return self->content;
 }
 
-- (JSON_DataBlock *)createDataBlock:(Class)datablock {
+- (id<JSON_DataBlockProtocol>)createDataBlock:(Class)datablock {
     return self->content = [[datablock alloc] init];
 }
 
 - (NSString *)toJsonString {
-    NSString *_request = [self->content serialize:self->content.class];
+    NSString *_request = [self serialize:self->content metaClass:self->content.class];
     if(_request == NULL || [_request length] == 0) {
-        self->request = @"";
-        return self->request;
+        self->jsonString = @"";
+        return self->jsonString;
     }
     
-    self->request = [NSString stringWithString:_request];
-    return self->request;
+    return self->jsonString = [NSString stringWithString:_request];
 }
 
-- (JSON_Serializer *)deserialize:(NSString *) jsonStr {
-    [self->content deserialize:jsonStr];
-    return self;
+- (id<JSON_DataBlockProtocol>)toClassObject:(NSString*)jsonStr {
+    [self deserialize:self->content metaClass:[self->content class] jsonStr:jsonStr];
+    return [self getDataBlock];
 }
-
-//- (void)preSerialize {
-//    NSString *_request = [self->content serialize:self->content.class];
-//    if(_request == NULL || [_request length] == 0) {
-//        self->request = @"";
-//        return;
-//    }
-//
-//    self->request = [NSString stringWithString:_request];
-//}
-
-//- (NSString *)toJsonString {
-//    [self preSerialize];
-//    return [self serialize:self.class];
-//}
 
 @end
