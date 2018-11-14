@@ -12,7 +12,7 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
 ![foo](/ScreenShot2.png "set path")
 
 ## Code implement:
-* Let your Class adopts protocol "JSON_DataBlockProtocol". - [Code Link][bar]
+* Let your Class adopts protocol "JSON_DataBlockProtocol". - [Code][bar]
 
 [bar]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.h#L12-L28
 ```objective-c
@@ -35,9 +35,10 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
 @end
 ```
 
-* Call "toJsonString" to make jsonify happen. - [Code Link][bar]
+* Call "toJsonString" to make jsonify happen. - [Code][bar2]
 
-[bar]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.m#L44-L54
+[bar2]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.m#L44-L54
+
 ```objective-c
 - (NSString *)jsonify { 
     
@@ -51,9 +52,9 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
 }
 ```
 
-* Call "toClassObject" to restore JSON string to Class object. - [Code Link][bar]
+* Call "toClassObject" to restore JSON string to Class object. - [Code][bar3]
 
-[bar]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.m#L56-L63
+[bar3]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.m#L56-L63
 ```objective-c
 - (void)deserialize {
     
