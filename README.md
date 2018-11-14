@@ -6,10 +6,10 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
 1. Copy libJSON_Serializer.a and JSON_Serializer.h to your library and Header search folder.
 
 2. Set your project build setting's "Other Linker Flags" for "-objC"
-![foo](/ScreenShot1.png "set -objC")
+![image](/ScreenShot1.png "set -objC")
 
 3.  Set your project build setting's "Header/Library Search Path" for "your own path"
-![foo](/ScreenShot2.png "set path")
+![image](/ScreenShot2.png "set path")
 
 ## Code implement:
 * Let your Class adopts protocol "JSON_DataBlockProtocol". - [Code][bar]
