@@ -64,7 +64,7 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
     UserDataBlock *db = [package getDataBlock];
 }
 ```
-## If any variable you don't to jsonify or deserialize
+## If any variable you don't want to jsonify or deserialize
 * call addIgnoreSerializeVar:iVarName
 * call addIgnoreDeserializeVar:iVarName
 
