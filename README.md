@@ -23,12 +23,10 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
     NSString *phoneNumber;
 }
 
-
 //
 + (NSString *)userID;
 - (NSString *)userID;
 - (void)setUserID:(NSString *)value;
-
 
 //
 + (NSString *)phoneNumber;
@@ -42,6 +40,7 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
 [bar]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.m#L44-L54
 ```objective-c
 - (NSString *)jsonify { 
+    
     JSON_Serializer<UserDataBlock *> *package = [[JSON_Serializer alloc] initWithDataBlock:[UserDataBlock class]];
     UserDataBlock *db = [package getDataBlock];
     db->userID = @"9876543";
@@ -57,12 +56,10 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
 [bar]: /Source/JSON_SerializerTester/JSON_SerializerTester/TestForJSON_Serializer.m#L56-L63
 ```objective-c
 - (void)deserialize {
+    
     JSON_Serializer<UserDataBlock *> *package = [[JSON_Serializer alloc] initWithDataBlock:[UserDataBlock class]];
     NSString *jsonStr = @"{\"userID\":\"5551236\",\"phoneNumber\":\"02222667222\",\"birthday\":\"2018.01.01\"}";
     [package toClassObject:jsonStr];
-    
-    NSLog(@"Deserialize:\n%@ to class UserDataBlock → \nUserDataBlock.UserID: %@, UserDataBlock.PhoneNumber: %@",
-          jsonStr, [UserDataBlock userID], [UserDataBlock phoneNumber]);
 }
 ```
 ## If any variable you don't to jsonify or deserialize
