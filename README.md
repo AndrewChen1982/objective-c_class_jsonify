@@ -60,6 +60,8 @@ It's a jsonify tool for JSON string to class object and Class Object to JSON str
     JSON_Serializer<UserDataBlock *> *package = [[JSON_Serializer alloc] initWithDataBlock:[UserDataBlock class]];
     NSString *jsonStr = @"{\"userID\":\"5551236\",\"phoneNumber\":\"02222667222\",\"birthday\":\"2018.01.01\"}";
     [package toClassObject:jsonStr];
+    
+    UserDataBlock *db = [package getDataBlock];
 }
 ```
 ## If any variable you don't to jsonify or deserialize
